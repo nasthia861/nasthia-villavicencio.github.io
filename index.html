@@ -2,24 +2,93 @@
 <html>
     <head>
       <title>Nasthia's Awesome Website</title>
+      <style>
+        body {
+            background: rgb(40, 130, 138);
+            color: rgb(122, 72, 72);
+            padding: 10px;
+            font-family: arial;
+        }
+        #all-contents {
+            max-width: 800px;
+            margin: auto;
+        }
+    
+        /* navigation menu */
+        nav {
+            border-radius: 30px;
+            background: rgb(229, 206, 167);
+            margin: 0 auto;
+            margin-bottom: 20px;
+            display: flex;
+            padding: 10px;
+        }
+        nav h1 {
+            display: flex;
+            align-items: center;
+            color: rgb(122, 72, 72);
+            flex: 1;
+            margin: 0;
+        }
+        nav ul {
+            list-style-image: none;
+        }
+        nav li {
+            display: inline-block;
+            padding: 0 10px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #f9f7f7;
+        }
+    
+        /* main container area beneath menu */
+        main {
+            background: rgb(229, 206, 167);
+            display: flex;
+            border-radius: 30px;
+        }
+        .sidebar {
+            margin-right: 25px;
+            padding: 10px;
+        }
+        .sidebar img {
+            border-radius: 10% 30% 50% 70%;
+            border: 5px solid rgb(122, 72, 72);;
+            width: 200px;
+        }
+        .content {
+            flex: 1;
+            padding: 15px;
+        }
+        h2, h3 {
+            margin: 0px;
+        }
+       </style>
     </head>
     
     <body>
-      <h1>Header</h1>
+      <h1></h1>
       <div id="all-contents"> 
         <nav>
-
+          <h1>Nasthia's Awesome Website</h1>
+          <ul>
+              <li>
+                <a href="index.html"> Home </a>
+              </li>
+              <li>
+                <a href="portfolio.html"> Portfolio </a>
+            </li>
+          </ul>
         </nav>
 
         <main>
             <div class="sidebar">
-                <div class="sidebar">
-                    <img src="https://scontent-atl3-1.xx.fbcdn.net/v/t39.30808-6/301515386_10160092522739394_2808362775324410852_n.jpg?stp=dst-jpg_p206x206&_nc_cat=106&ccb=1-7&_nc_sid=da31f3&_nc_ohc=ghbin3S3s7gAX-XNMCY&_nc_ht=scontent-atl3-1.xx&oh=00_AfCsYB6wJjyI5MDSmN0N8wTHJA3z0ja1zzhO5FDEOaAchg&oe=64487AE7">
-              </div>
+              <img src="https://scontent-atl3-1.xx.fbcdn.net/v/t39.30808-6/301515386_10160092522739394_2808362775324410852_n.jpg?stp=dst-jpg_p206x206&_nc_cat=106&ccb=1-7&_nc_sid=da31f3&_nc_ohc=ghbin3S3s7gAX-XNMCY&_nc_ht=scontent-atl3-1.xx&oh=00_AfCsYB6wJjyI5MDSmN0N8wTHJA3z0ja1zzhO5FDEOaAchg&oe=64487AE7">
             </div>
         
             <div class="content">
-              <h2>Nasthia</h2>
+              <h2>Nasthia Villavicencio</h2>
               <p>Student at Operation Spark</p>
               <div id="interests">
                 <h3>Interests</h3>
