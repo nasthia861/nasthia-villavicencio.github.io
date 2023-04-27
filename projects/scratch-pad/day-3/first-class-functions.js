@@ -13,7 +13,13 @@
  */
 function createGreaterThanFilter(base) {
     // YOUR CODE BELOW HERE //
-    
+//create function with new filter parameter
+      return function(filter){
+        //if filter is greater than base, return true. if not, return false
+        if(filter > base){
+          return true;
+        } else {return false;}
+      };
     
     
     
@@ -27,6 +33,13 @@ function createGreaterThanFilter(base) {
  */
 function createLessThanFilter(base) {
     // YOUR CODE BELOW HERE //
+    //return function that takes in filter parameter
+    return function(filter){
+//if filter is less than base return true, else return false
+        if(filter < base){
+            return true;
+        } else {return false;}
+    }
     
     
     
@@ -41,7 +54,14 @@ function createLessThanFilter(base) {
  */
 function createStartsWithFilter(startsWith) {
     // YOUR CODE BELOW HERE //
-    
+    //return function that takes in word parameter
+    return function check(word){
+        //if index zero in word is equal to our startsWith parameter, return true. else, return false
+        //also use toUpperCase method and toLowerCase method to make sure its not case sensitive
+        if(word[0] == startsWith.toUpperCase() || word[0] == startsWith.toLowerCase()){
+            return true;
+        } else {return false;}
+    }
     
     
     
@@ -54,10 +74,15 @@ function createStartsWithFilter(startsWith) {
  * character.
  */
 function createEndsWithFilter(endsWith) {
-    // YOUR CODE BELOW HERE //
-    
-    
-    
+ // YOUR CODE BELOW HERE //
+    //return function that takes in word parameter
+    return function check(word){
+        //if the last index in word is equal to our endsWith parameter, return true. else, return false
+        //also use toUpperCase method and toLowerCase method to make sure its not case sensitive
+        if(word[word.length - 1] == endsWith.toUpperCase() || word[word.length - 1] == endsWith.toLowerCase()){
+            return true;
+        } else {return false;}
+    }
     
     // YOUR CODE ABOVE HERE //
 }
@@ -71,9 +96,14 @@ function createEndsWithFilter(endsWith) {
  */
 function modifyStrings(strings, modify) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
+    //init collection array
+    var collection = [];
+    //making for loop to go through strings array
+    for(var x = 0; x < strings.length; x++){
+        //pass each string through the modify function and push to collection array
+            collection.push(modify(strings[x]));
+        }
+    return collection;
     
     // YOUR CODE ABOVE HERE //
 }
@@ -89,10 +119,27 @@ function modifyStrings(strings, modify) {
  */
 function allStringsPass(strings, test) {
     // YOUR CODE BELOW HERE //
+    //creating while loop to go through strings array
+    //count will go up after each test
+    var count = 0;
+  //i will go up after each passing test
+    var i = 0;
+    while (count < strings.length){
+    //if the string passes the test, i will increase by 1
+        if(test(strings[i])){
+        i ++;
+    }
+    //after each loop count will increase
+        count++;
+  }
+  //once the loop has gone through all the string on the array
+  //if all the tests passed, return true, if they did not ALL pass, return false
+  if (i === strings.length){
+    return true;
+  } else {return false;}
+
     
-    
-    
-    
+  
     // YOUR CODE ABOVE HERE //
 }
 
