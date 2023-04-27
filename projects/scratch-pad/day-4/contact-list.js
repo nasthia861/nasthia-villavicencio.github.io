@@ -35,7 +35,14 @@
 
 // YOUR CODE GOES BELOW HERE //
 function makeContact(id, nameFirst, nameLast) {
-
+    //init contact obj to push values into
+    var contact = {};
+    //pushing key/values to our contact object
+    contact.id = id;
+    contact.nameFirst = nameFirst;
+    contact.nameLast = nameLast;
+    //returning updated contact object
+    return contact;
 } 
 
 
@@ -43,12 +50,18 @@ function makeContactList() {
     /*
      * You need something here to hold contacts. See length api for a hint:
      */
-    var contacts;
+    var contacts = []; //assume contacts looks like the data in contacts folder
     
     return {
         // we implemented the length api for you //
         length: function() {
             return contacts.length;
+        },
+        add: function(contact){
+            contacts.push(contact);
+        },
+        findContact: function(fullName){
+
         }
     }
 }
