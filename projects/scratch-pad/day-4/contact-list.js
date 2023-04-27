@@ -45,7 +45,7 @@ function makeContact(id, nameFirst, nameLast) {
     return contact;
 } 
 
-
+//creating function makeContactList that returns an object that manages contacts
 function makeContactList() {
     /*
      * You need something here to hold contacts. See length api for a hint:
@@ -57,11 +57,42 @@ function makeContactList() {
         length: function() {
             return contacts.length;
         },
-        add: function(contact){
+        addContact: function(contact){
             contacts.push(contact);
         },
         findContact: function(fullName){
-
+            //split full name and push them to firstName and lastName variables we just init
+            var firstName = fullName.split(' ')[0];
+            var lastName = fullName.split(' ')[1];
+            //create loop to go through contacts array
+            for(var i = 0; i < contacts.length; i++){
+                //if fullName argument matches the firstName and lastName keys in the contacts array, return the object it matches
+                if(firstName === contacts[i].nameFirst && lastName === contacts[i].nameLast){
+                    return contacts[i];
+                } else {return undefined;}
+            }
+        },
+        removeContact: function(contact){
+            //loop to go through the contacts array and find the contact object that matches the parameter
+            for(var x = 0; x < contacts.length; x++){
+                //if contact argument matches a contact object on the contacts list, it will be spliced from the array
+                if(contact === contacts[x]){
+                    contacts.splice(x, 1);
+                }
+            }
+        },
+        printAllContactNames: function(){
+            //init an array to push all the names into and a string to push the array into
+            var arrayOutput = [];
+            var stringOutput = '';
+            //loop through the contacts array
+            for(var i = 0; i < contacts.length; i++){
+                //we are going to push each nameFirst and nameLast in the array to our output array
+                arrayOutput.push(contacts[i].nameFirst + ' ' + contacts[i].nameLast);
+            }
+            //we will be splicing the arrayOutput array and pushing it into our stringOuput seperating it by line
+            stringOutput = arrayOutput.join('\n');
+            return stringOutput;
         }
     }
 }
