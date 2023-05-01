@@ -152,9 +152,18 @@ Imagine that our website has a profile page for each animal. On this profile pag
 var friends = [];
 //creating function getRandom with an array as our parameter
 function getRandom(array){
-  array[Math.random]
+  //using Math.random method to pick a random index in the array
+  var randomIndex = array[Math.floor(Math.random() * array.length)];
+  return randomIndex;
 }
-
+//calling getRandom function to add a random animal from our animal array to push into friends array
+friends.push(getRandom(animals).name);
+//logging to console
+console.log(friends);
+//adding friends list to one of the animal onjects using bracket notation
+animals[getRandom(animals)]['Friends'] = friends;
+//logging to console
+console.log(animals);
 
 
 /**
