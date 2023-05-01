@@ -71,9 +71,10 @@ console.log(animal);
  * Step 4 - Review
  *
  * 1. What are the different ways you can access properties on objects?
- *
+ *dot notation
+ bracket notation
  * 2. What are the different ways of accessing elements on arrays?
- *
+ *bracket notation
  * *******************************************************************
  */
 
@@ -88,13 +89,71 @@ console.log(animal);
 
 //////////////////////////////////////////////////////////////////////
 // Step 6 - A Collection of Animals //////////////////////////////////
+/*
+## Step 6 - A Collection of Animals
+ 1. [ ] Create a variable named `animals` and assign it to an empty array.
+ 2. [ ] `push` our `animal` that we created to `animals`. You should now see your first animal appear on your `index.html` page!
+ 3. [ ] `console.log` `animals`. What does it look like?
+ 4. [ ] Create a variable called `duck` and assign it to the data:
+  - `{ species: 'duck', name: 'Jerome', noises: ['quack', 'honk', 'sneeze', 'woosh'] }`
+ 5. [ ] `push` `duck` to `animals`
+ 6. [ ] `console.log` `animals`. What does it look like?
+ 7. [ ] Create two more animal objects each with a species, a name, and at least two sounds sounds and add each one of them to `animals.
+ 8. [ ] `console.log` `animals`, and, `console.log` the length of `animals`. Is everything looking right?
+
+ */
 //////////////////////////////////////////////////////////////////////
+var animals = [];
+animals.push(animal);
+console.log(animals);
+var duck = {
+  species: 'duck',
+  name: 'Jerome',
+  noises: ['quack', 'honk', 'sneeze', 'woosh']
+};
+animals.push(duck);
+console.log(animals);
+var snake = {
+  species: 'snake',
+  name: 'SlimeBall',
+  noises: ['hiss', 'jab', 'rattle']
+};
+var leopard = {
+  species: 'leopard',
+  name: 'James',
+  noises: ['purr', 'growl', 'hiss']
+};
+animals.push(snake, leopard);
+console.log(animals);
+console.log(animals.length);
 
 
 
 //////////////////////////////////////////////////////////////////////
 // Step 7 - Making Friends ///////////////////////////////////////////
+/*
+## Step 7 - Making Friends
+
+Imagine that our website has a profile page for each animal. On this profile page we can see a list of each animal's friend on the website. Just like how people have a list of friends or followers on facebook or instagram. What would be a good data structure to hold this list of friends?
+
+ 1. [ ] Choose a data structure for this **list** of friends. => array
+ 2. [ ] Write a comment in your code that explains why you chose this data structure.
+ 3. [ ] Create a variable called `friends` and assign it to the data structure that you chose.
+ 4. [ ] Take a look at the documentation for `Math.random` here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+ 5. [ ] Write a function called `getRandom` that takes our `animals` array and returns  a random `index` of the input array, using `Math.random`
+ 6. [ ] Using a random index from this function that you just created, get a random animal and add its `name` to `friends`.
+ 7. [ ] `console.log` `friends`.
+ 8. [ ] Using **bracket notation**, add the `friends` list as a **property** also named `friends` on one of the animals in the `animals` array
+ 9. [ ] `console.log` your work.
+ */
 //////////////////////////////////////////////////////////////////////
+//created friends array to push a list of friends 
+//chose array because it makes a funtiona; list to go through easily
+var friends = [];
+//creating function getRandom with an array as our parameter
+function getRandom(array){
+  array[Math.random]
+}
 
 
 
