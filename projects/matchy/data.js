@@ -107,19 +107,19 @@ var animals = [];
 animals.push(animal);
 console.log(animals);
 var duck = {
-  species: 'duck',
+  species: 'Duck',
   name: 'Jerome',
   noises: ['quack', 'honk', 'sneeze', 'woosh']
 };
 animals.push(duck);
 console.log(animals);
 var snake = {
-  species: 'snake',
+  species: 'Snake',
   name: 'SlimeBall',
   noises: ['hiss', 'jab', 'rattle']
 };
 var leopard = {
-  species: 'leopard',
+  species: 'Leopard',
   name: 'James',
   noises: ['purr', 'growl', 'hiss']
 };
@@ -153,7 +153,7 @@ var friends = [];
 //creating function getRandom with an array as our parameter
 function getRandom(array){
   //using Math.random method to pick a random index in the array
-  var randomIndex = array[Math.floor(Math.random() * array.length)];
+  var randomIndex = array[Math.floor(Math.random() * (array.length - 1))];
   return randomIndex;
 }
 //calling getRandom function to add a random animal from our animal array to push into friends array
@@ -161,7 +161,8 @@ friends.push(getRandom(animals).name);
 //logging to console
 console.log(friends);
 //adding friends list to one of the animal onjects using bracket notation
-animals[getRandom(animals)]['Friends'] = friends;
+animals[0]['friends'] = friends;
+//console.log(animals.animal);
 //logging to console
 console.log(animals);
 
