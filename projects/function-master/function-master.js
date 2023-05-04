@@ -195,7 +195,16 @@ function maybeNoises(object) {
 //////////////////////////////////////////////////////////////////////
 
 function hasWord(string, word) {
-
+  let array = string.split(' ');// split the string into an array of all the words
+  //create for loop to go through array
+  for(let i = 0; i < array.length; i++){
+    //if the word matches any of the words in the array, return true
+    if(word === array[i]){
+      return true;
+    }
+  }
+  //if the if statement in the for loop fails, return false
+  return false;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -209,7 +218,8 @@ function hasWord(string, word) {
 //////////////////////////////////////////////////////////////////////
 
 function addFriend (name, object) {
-
+  object.friends.push(name);//should push name into friends array inside the object
+  return object;//return object
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -224,7 +234,21 @@ function addFriend (name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function isFriend(name, object) {
-
+  //for in loop to check on the keys
+  for(var key in object){
+    //if friends key exists
+    if(key === 'friends'){
+      //create loop to go through friend array
+      for(let i = 0; i < object.friends.length; i++){
+        //if name is equal to a name in the friends array, return true
+        if(name === object.friends[i]){
+          return true;
+        }
+      }
+    }
+  } 
+  //if the if statements inside the for loop fails, return false
+  return false;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -245,8 +269,25 @@ function isFriend(name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function nonFriends(name, array) {
-
+  //what array is name in
+  //for loop to go through array
+  for(let x = 0; x < array.length; x++){
+    if(name === array[x].name){
+      //now that we are in the name object we must check to see if any name is missing from his friends array
+      //lets make another for loop to go through the array again and run them through the includes method
+      for(let i = 0; i < array.length; i++){
+        //if array[i].name is NOT included in the friends array and its not the name argument, push to notFriends array
+        var notFriends = [];
+        if( array[x].friends.includes(array[i].name) !== true && array[i].name !== name){
+          notFriends.push(array[i].name);
+        }
+       
+      }
+    }
+  }
+  return notFriends;
 }
+
 
 //////////////////////////////////////////////////////////////////////
 // Function 14 - Update Object ///////////////////////////////////////
@@ -263,7 +304,19 @@ function nonFriends(name, array) {
 //////////////////////////////////////////////////////////////////////
 
 function updateObject(object, key, value) {
-
+  //make if statement to check if key exists
+  for(var x in object){
+    if(x === key){
+      object[x] = value;
+      return object;
+    } 
+  }
+  for(var x in object){
+    if(x !== key) {
+      object.key = value;    //keeps using key as the key instead of the argument
+      return object;
+    }
+  }
 }
 
 //////////////////////////////////////////////////////////////////////
