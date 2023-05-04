@@ -304,21 +304,10 @@ function nonFriends(name, array) {
 //////////////////////////////////////////////////////////////////////
 
 function updateObject(object, key, value) {
-  //make if statement to check if key exists
-  for(var x in object){
-    if(x === key){
-      object[x] = value;
+      object[key] = value;
       return object;
-    } 
-  }
-  for(var x in object){
-    if(x !== key) {
-      object.key = value;    //keeps using key as the key instead of the argument
-      return object;
-    }
-  }
-}
 
+}
 //////////////////////////////////////////////////////////////////////
 // Function 15 - Remove Properties ///////////////////////////////////
 /*

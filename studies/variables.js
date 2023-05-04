@@ -31,9 +31,12 @@
  *      -can be reassigned
  *      -can be initialized as undefined
  *      -naturally function scoped
+ *
  * 3. Hoisting:
- * 
- * 
+ * Hoisting is the declarations that the program brings to the top of the code. Hoisting happens with variables and functions 
+ * but in different ways. Variables get hoisted by name only, so the program knows the variable is declared before hitting the
+ * code but it does not remember the value. Functions are hoisted with their name and value, which includes the body of the code.
+ * While all variables are hoisted, var will be the only variable that will not give you an error, it will simply return as undefined.
  */
 
 //1. Declaration and Assignment //
@@ -50,6 +53,7 @@ console.log(age); //28
 
 
 //2. var, let, and const //
+//var//
 var milk;//var can be declared without a value
 
 milk = '2%';
@@ -63,6 +67,7 @@ function drink(){
 console.log(juice);//reference error: juice is not defined
 //this is because var is function scoped and cant be reached outside of the function.
 
+//const//
 const pieFilling = 'cherry';
 pieFilling = 'apple';//TypeError: Assignment to constant variable.
 //const can not be reassigned
@@ -72,6 +77,8 @@ if(milk = 'whole'){
 }
 console.log(animal);//ReferenceError: animal is not defined
 //const is block scoped so it can not be reached outside of the if statement.
+
+//let//
 let bread; // bread can be initialized as undefined
 let bread = 'sourdough';//SyntaxError: Identifier 'bread' has already been declared
 //let can not be redeclared
@@ -86,4 +93,25 @@ console.log(cake);//ReferenceError: cake is not defined
 
 
 //3.Hoisting//
+//variables//
+var myPets = 'My cat is a ' + cat;//here the variable name is hoisted but not the value
+console.log(myPets);//'My cat is a unknown'
+var cat = 'calico';
+
+//functions//
+var sum = add(1, 2);//here we are calling the function before it reaches the code, this works because the function 
+//is being hoisted to the top before the code even runs.
+console.log(sum);//3
+
+function add(x, y){
+    return x + y;
+}
+
+//Beware: if you do a function expression instead of a function declaration, the program will treat it as a variable
+//and only hoist the name and not the function
+var sum = add(1, 2);//TypeError: add is not a function
+
+var add = function(x, y){//here the program is hoisting the variable add and leaving behind the function
+    return x + y;
+}
 

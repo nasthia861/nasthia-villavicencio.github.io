@@ -3,23 +3,53 @@
 // triangles ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function triangles() {
-
+function triangles(amount) {
+//create variable to push #s into
+  let line = '';
+  //for loop to go from 0 to the amount parameter
+  for( let x = 0; x < amount; x++){
+    //each loop will add a # to line variable and then log it before it loops again
+    line += '#';
+    console.log(line);
+  }
 }
+
 ////////////////////////////////////////////////////////////////////////////////
 // fizzBuzz ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function fizzBuzz() {
-  
+function fizzBuzz(number1, number2) {
+  for( let x = number1; x <= number2; x++){
+    if(x % 3 == 0 && x % 5 == 0){
+      console.log('fizzbuzz')
+    } else if (x % 3 == 0){
+      console.log('fizz');
+    } else if (x % 5 == 0){
+      console.log('buzz');
+    } else {console.log(x)};
+  }   
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // drawChessboard //////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function drawChessboard() {
-
+function drawChessboard(size) {
+  //box to push into  
+  var box = '';
+    //rows
+    for(let x = 0; x < size; x++){
+      //collums
+      for(let y = 0; y < size; y++){
+        //if the sum of row index and column index is even, push space; if it odd, push #
+        if((x + y) % 2 == 0){
+          box += ' ';
+         } else {box += '#';}
+      }
+      //line break inbetween rows
+      box += '\n';  
+    }
+      console.log(box);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
