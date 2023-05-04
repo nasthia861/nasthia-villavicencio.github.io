@@ -271,13 +271,13 @@ function isFriend(name, object) {
 function nonFriends(name, array) {
   //what array is name in
   //for loop to go through array
+  var notFriends = [];
   for(let x = 0; x < array.length; x++){
     if(name === array[x].name){
       //now that we are in the name object we must check to see if any name is missing from his friends array
       //lets make another for loop to go through the array again and run them through the includes method
       for(let i = 0; i < array.length; i++){
         //if array[i].name is NOT included in the friends array and its not the name argument, push to notFriends array
-        var notFriends = [];
         if( array[x].friends.includes(array[i].name) !== true && array[i].name !== name){
           notFriends.push(array[i].name);
         }
