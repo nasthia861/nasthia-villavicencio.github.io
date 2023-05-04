@@ -328,7 +328,14 @@ function updateObject(object, key, value) {
 //////////////////////////////////////////////////////////////////////
 
 function removeProperties(object, array) {
-
+  for(let x = 0; x < array.length; x++){
+    for(let key in object){
+      if(array[x] === key){
+        delete object[key];
+      }
+    }
+  }
+  return object;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -344,7 +351,16 @@ function removeProperties(object, array) {
 //////////////////////////////////////////////////////////////////////
 
 function dedup(array) {
-
+  //create box array to push into
+  let box = [];
+    //for loop to go through array parameter
+    for (var i = 0; i < array.length; i++){
+      //using includes method to check if array[i] already exists in the box array, if it does not it will get pushed into it.
+      if (box.includes(array[i]) === false){
+        box.push(array[i]);}
+    }
+  //here we return the modified box array
+    return box;
 }
 
 //////////////////////////////////////////////////////////////////////
