@@ -304,6 +304,7 @@ function nonFriends(name, array) {
 //////////////////////////////////////////////////////////////////////
 
 function updateObject(object, key, value) {
+    //object[key] = value will work to replace the value and to create a key if it does not exist
       object[key] = value;
       return object;
 
@@ -328,13 +329,17 @@ function updateObject(object, key, value) {
 //////////////////////////////////////////////////////////////////////
 
 function removeProperties(object, array) {
+  //create for loop to go through array parameter
   for(let x = 0; x < array.length; x++){
+    //create another for loop to go through the keys in the object parameter
     for(let key in object){
+      //if the array value exists as one of the keys, delete that key
       if(array[x] === key){
         delete object[key];
       }
     }
   }
+  //return modified object
   return object;
 }
 
