@@ -164,7 +164,14 @@ _.last = function(array, number){
 */
 
 _.indexOf = function(array, value){
-
+    //for loop to go through array
+    for(let i = 0; i < array.length; i++){
+        //if value is in the array, return the index
+        if(array[i] === value){
+            return i;
+        }
+    }
+    return -1;
 }
 
 /** _.contains
@@ -181,6 +188,19 @@ _.indexOf = function(array, value){
 * Examples:
 *   _.contains([1,"two", 3.14], "two") -> true
 */
+
+_.contains = function(array, value){
+    //for loop tp go through array
+    for(let i = 0; i < array.length; i++){
+        //ternary operator
+        //if value is in the array, return true.
+        if(array[i] === value){
+          return true;
+        }
+    }
+    //if loop fails return false
+    return false;
+}
 
 
 /** _.each
@@ -227,6 +247,19 @@ _.each = function(collection, func){
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
 
+_.unique = function(array){
+    //init new array variable to push into
+    let newArray = [];
+    //for loop to go through array
+    for(let i = 0; i < array.length; i++){
+    //if indexOf returns -1, push into new Array
+        if(_.indexOf(newArray, array[i]) === -1){
+            newArray.push(array[i])
+        } 
+    }
+    return newArray;
+}
+
 
 /** _.filter
 * Arguments:
@@ -244,6 +277,20 @@ _.each = function(collection, func){
 *   use _.each in your implementation
 */
 
+_.filter = function(array, funk){
+    //init new array to push passing elements into
+    var newArray = [];
+    //for loop to go through array for each ELEMENT
+    for(let x = 0; x < array.length; x++){
+        //if the element passing through the function is true, push into new array
+        if(funk(array[x], x, array)){
+            newArray.push(array[x]);
+        }
+    }
+    //return new array
+    return newArray;
+}
+
 
 /** _.reject
 * Arguments:
@@ -257,6 +304,20 @@ _.each = function(collection, func){
 * Examples:
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
+
+_.reject = function(array, funk){
+    //init new array to push failing elements into
+    var failArray = [];
+    //for loop to go through array for each ELEMENT
+    for(let x = 0; x < array.length; x++){
+        //if the element passing through the function is false, push into new array
+        if(!funk(array[x], x, array)){
+            failArray.push(array[x]);
+        }
+    }
+    //return new array
+    return failArray;
+}
 
 
 /** _.partition
@@ -277,6 +338,17 @@ _.each = function(collection, func){
 *   }); -> [[2,4],[1,3,5]]
 }
 */
+_.partition = function(array, funk){
+//init variable to push both function arrays into
+    var bothArrays = [];
+//push array that passes filter function into empty array
+    bothArrays.push(_.filter(array, funk));
+//push array that passes reject function into empty array
+    bothArrays.push(_.reject(array, funk));
+//return modified array
+    return bothArrays;
+}
+
 
 
 /** _.map
@@ -294,7 +366,23 @@ _.each = function(collection, func){
 * Examples:
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
-
+_.map = function(collection, funk){
+    //init new array
+    var newArray = [];
+    if(Array.isArray(collection)){
+        //iterate through collection
+        for(let x = 0; x < collection.length; x++){
+            //call the function on each property in collection
+            newArray.push(funk(collection[x], x, collection));
+        }
+    } else { 
+        //iterate through object keys
+        for(var key in collection){
+            newArray.push(funk(collection[key], key, collection));
+        }
+    }
+    return newArray;
+}
 
 /** _.pluck
 * Arguments:
