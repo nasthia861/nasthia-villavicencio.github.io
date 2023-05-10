@@ -399,7 +399,7 @@ _.pluck = function(array, property){
     let newArray = []
     //use map function to access all the objects in the array
     _.map(array, function(e, i, c){
-        //use mapo function again to access all the properties inside the objects
+        //use map function again to access all the properties inside the objects
         _.map(array[i], function(v, k, c){
             //if any key inside the objects matches our property, it will get pushed into the empty array
             if(k === property){
@@ -432,16 +432,25 @@ _.pluck = function(array, property){
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
 _.every = function(collection, funk){
-    //for loop to go through every element in collection
+    //if a function was provided
     if(funk !== undefined){
+        //create for loop to go through collection if it is an array
         for(let x = 0; x < collection.length; x++){
-            //if every element called returns true, return true
-            if(!funk(collection[x])){
+            //if any element called returns false, return false
+            if(!funk(collection[x], x, collection)){
                 return false;
-            //if one element fails, return false
             }
         }
+        //create for in loop to go through collection if it is an object
+        for(let key in collection){
+            //if any element called returns false, return false
+            if(!funk(collection[key], key, collection)){
+                return false;
+            }
+        }
+        //if the for loops fail and every element passes the function call, return true
         return true;
+
     //if function is not provided, return true if every element is truthy
     } else { 
         //for loop to go through collection
@@ -477,15 +486,23 @@ _.every = function(collection, funk){
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 _.some = function(collection, funk){
-    //for loop to go through every element in collection
+    //if a function was provided
     if(funk !== undefined){
+        //for loop to go through collection if it is an array
         for(let x = 0; x < collection.length; x++){
             //if one element called returns true, return true
-            if(funk(collection[x])){
+            if(funk(collection[x], x, collection)){
                 return true;
-            //if every element fails, return false
             }
         }
+        //for loop to go through collection if it is an object
+        for(let key in collection){
+            //if an element called returns true, return true
+            if(funk(collection[key], key, collection)){
+                return true;
+            }
+        }
+        //if all the four loops fail and none of the elements pass the function, return false
         return false;
     //if function is not provided, return true if every element is truthy
     } else { 
@@ -524,20 +541,23 @@ _.reduce = function(array, funk, seed){
     let result;
     //determine if seed was not passed in
     if(seed === undefined){
+        //result will be set to the first value in the array
         result = array[0];
         for(let i = 1; i < array.length; i++){
-            //reassign result to func invocation
-            result  = func(result, array[i], i, array);
+            //reassign result to func invocation, this will keep changing as the loop progresses
+            result  = funk(result, array[i], i, array);
             //.             ?       item.   index collection
         }
-    //else it was
+    //if we were given a seed argument
     } else {
+        //result will start off by equaling seed
         result = seed;
         for(let i = 0; i < array.length; i++){
-            //reassign result to func invocation
-            result = func(result, array[i], i, array);
+            //reassign result to func invocation, this will keep changing as the loop progresses
+            result = funk(result, array[i], i, array);
         }
     }
+    //return the final value of result
     return result;
 }
 
@@ -556,6 +576,13 @@ _.reduce = function(array, funk, seed){
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+
+_.extend = function(object1, object2, object3){
+    //object will get reassigned using the Object.assign property. replacing the target first argument with elements in the other arguments.
+    Object.assign(object1, object2, object3);
+    //return the modified object
+    return object1;
+}
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
