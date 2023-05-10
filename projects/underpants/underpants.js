@@ -394,6 +394,21 @@ _.map = function(collection, funk){
 * Examples:
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
+_.pluck = function(array, property){
+//init newArray array to push into
+    let newArray = []
+    //use map function to access all the objects in the array
+    _.map(array, function(e, i, c){
+        //use mapo function again to access all the properties inside the objects
+        _.map(array[i], function(v, k, c){
+            //if any key inside the objects matches our property, it will get pushed into the empty array
+            if(k === property){
+                newArray.push(v);
+            }
+        })
+    })//return the modified array
+    return newArray;
+}
 
 
 /** _.every
@@ -416,6 +431,29 @@ _.map = function(collection, funk){
 *   _.every([2,4,6], function(e){return e % 2 === 0}) -> true
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
+_.every = function(collection, funk){
+    //for loop to go through every element in collection
+    if(funk !== undefined){
+        for(let x = 0; x < collection.length; x++){
+            //if every element called returns true, return true
+            if(!funk(collection[x])){
+                return false;
+            //if one element fails, return false
+            }
+        }
+        return true;
+    //if function is not provided, return true if every element is truthy
+    } else { 
+        //for loop to go through collection
+        for(let x = 0; x < collection.length; x++){
+            if(!collection[x]){
+                return false;
+            //if elements are not truthy, return false
+            }
+        }
+        return true;
+    }
+}
 
 
 /** _.some
@@ -438,6 +476,29 @@ _.map = function(collection, funk){
 *   _.some([1,3,5], function(e){return e % 2 === 0}) -> false
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
+_.some = function(collection, funk){
+    //for loop to go through every element in collection
+    if(funk !== undefined){
+        for(let x = 0; x < collection.length; x++){
+            //if one element called returns true, return true
+            if(funk(collection[x])){
+                return true;
+            //if every element fails, return false
+            }
+        }
+        return false;
+    //if function is not provided, return true if every element is truthy
+    } else { 
+        //for loop to go through collection
+        for(let x = 0; x < collection.length; x++){
+            if(collection[x]){
+                return true;
+            //if elements are not truthy, return false
+            } 
+        }
+        return false;
+    }
+}
 
 
 /** _.reduce
@@ -458,6 +519,27 @@ _.map = function(collection, funk){
 * Examples:
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
+
+_.reduce = function(array, funk, seed){
+    let result;
+    //determine if seed was not passed in
+    if(seed === undefined){
+        result = array[0];
+        for(let i = 1; i < array.length; i++){
+            //reassign result to func invocation
+            result  = func(result, array[i], i, array);
+            //.             ?       item.   index collection
+        }
+    //else it was
+    } else {
+        result = seed;
+        for(let i = 0; i < array.length; i++){
+            //reassign result to func invocation
+            result = func(result, array[i], i, array);
+        }
+    }
+    return result;
+}
 
 
 /** _.extend
