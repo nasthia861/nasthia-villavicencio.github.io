@@ -43,28 +43,28 @@
  * 
  */
 
-//Assignment Operators//
+//1.Assignment Operators//
 let x = 10;
 console.log(x);//10
 console.log(x *= 5)//50
 
-//Arithmetic operators//
+//2.Arithmetic operators//
 let y = 13;
 console.log(y - 3);//10
 console.log(y % 7);//3
 
-//Comparison Operators//
+//3.Comparison Operators//
 console.log(28 === '28')//false
 console.log(10 > 14)//false
 console.log(10 != 9)//true
 
-//Logical Operators
+//4.Logical Operators
 console.log(true && true)//true
 console.log(true && false)//false
 console.log(true || false)//true
 console.log(false || false)//false
 
-//Unary Operators//
+//5.Unary Operators//
 let a = 0;
 console.log(a++)//1
 console.log(a++)//2
@@ -78,7 +78,7 @@ console.log(-c)//-5
 let d = false;
 console.log(+d)//0
 
-//Ternary Operator//
+//6.Ternary Operator//
 function stopLight(color){
     return(color === 'green' ? 'go' : 'wait')
 }
