@@ -577,9 +577,9 @@ _.reduce = function(array, funk, seed){
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
 
-_.extend = function(object1, object2, object3){
+_.extend = function(object1, ...objects){
     //object will get reassigned using the Object.assign property. replacing the target first argument with elements in the other arguments.
-    Object.assign(object1, object2, object3);
+    Object.assign(object1, ...objects);
     //return the modified object
     return object1;
 }

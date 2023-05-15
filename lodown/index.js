@@ -56,9 +56,9 @@ module.exports.typeOf = typeOf;
 /**
  * first: takes an array and a number and returns a list of the first number of values in the array
  * 
- * @param {array} array: 
+ * @param {array} collection: 
  * @param {number} number: 
- * @returns {array} array: 
+ * @returns {array} collection: 
  */
 _.first = function(array, number){
     //create array to push values into
@@ -91,9 +91,9 @@ module.exports.first = first;
 /**
  * last: takes an array and a number and returns a list of the last number of values in the array.
  * 
- * @param {array} array: an array of values
+ * @param {array} collection: an array of values
  * @param {number} number: any positive number 
- * @returns {array} array: returns a modified array of the original array
+ * @returns {array} collection: returns a modified array of the original array
  */
 _.last = function(array, number){
     //init answer variable as an array for us to push the answer into
@@ -127,7 +127,7 @@ module.exports.last = last;
  * indexOf: Function takes an array and a value we are searching for in that array. If the value exists in the array
  * it will return the index it is in. If the value is not in the array, it will return -1.
  * 
- * @param { Array } array: function takes in an array with any value 
+ * @param { Array } collection: function takes in an array with any value 
  * @param { Value } value: function takes in any value to check for
  * @returns { number } number: returns the index number in the array that the value is located in
  */
@@ -147,7 +147,7 @@ module.exports.indexOf = indexOf;
  * contains: Function takes in 2 parameters an array to comb through and a value we are searching for. If the value
  * is located in the array, it returns true. If the value is not in the array, it returns false.
  * 
- * @param {Array} array: takes in an array to look through
+ * @param {Array} collection: takes in an array to look through
  * @param {value} value: takes in a value to search for
  * @returns {boolean} boolean: returns true if the value is located in the array and false if it does not.
  */
@@ -168,8 +168,8 @@ moudule.exports.contains = contains;
 /**
  * unique: function takes an array and loops it through its index to return a new array with no duplicate values.
  * 
- * @param {array} array: takes in an array as the parameter 
- * @returns {array} array: returns new array of the original array modified.
+ * @param {array} collection: takes in an array as the parameter 
+ * @returns {array} collection: returns new array of the original array modified.
  */
 _.unique = function(array){
     //init new array variable to push into
@@ -280,3 +280,160 @@ _.map = function(collection, funk){
     return newArray;
 }
 module.exports.map = map;
+
+/**
+ * pluck: Function takes in an array and a property to search for. Once the property is found it will be added to a new
+ * array. once all the matching properties have been found, the modified new array will be returned.
+ * 
+ * @param {array} collection: array to search over
+ * @param {property} value: a key value we are looking for in the array
+ * @returns {array} collection: all the elements that were found with the property key
+ */
+_.pluck = function(array, property){
+    //init newArray array to push into
+        let newArray = []
+        //use map function to access all the objects in the array
+        _.map(array, function(e, i, c){
+            //use map function again to access all the properties inside the objects
+            _.map(array[i], function(v, k, c){
+                //if any key inside the objects matches our property, it will get pushed into the empty array
+                if(k === property){
+                    newArray.push(v);
+                }
+            })
+        })//return the modified array
+        return newArray;
+}
+module.exports.pluck = pluck;
+
+/**
+ * every: the function passes a collection through a function and returns true only if all the properties pass, else returns
+ * false.
+ * 
+ * @param {array or object} collection: the data we are running through the function to make sure it passes
+ * @param {function} action: a test for the collection
+ * @returns {boolean} boolean: true if all the properties in the collection pass the function, false if any fail
+ */
+_.every = function(collection, funk){
+    //if a function was provided
+    if(funk !== undefined){
+        //create for loop to go through collection if it is an array
+        for(let x = 0; x < collection.length; x++){
+            //if any element called returns false, return false
+            if(!funk(collection[x], x, collection)){
+                return false;
+            }
+        }
+        //create for in loop to go through collection if it is an object
+        for(let key in collection){
+            //if any element called returns false, return false
+            if(!funk(collection[key], key, collection)){
+                return false;
+            }
+        }
+        //if the for loops fail and every element passes the function call, return true
+        return true;
+
+    //if function is not provided, return true if every element is truthy
+    } else { 
+        //for loop to go through collection
+        for(let x = 0; x < collection.length; x++){
+            if(!collection[x]){
+                return false;
+            //if elements are not truthy, return false
+            }
+        }
+        return true;
+    }
+}
+module.exports.every = every;
+
+/**
+ * some: function tests the collection through a function. If any of the properties pass, it will return true. If they all
+ * fail, it will return false.
+ * 
+ * @param {array or object} collection: the data we are running through the function to check if it passes
+ * @param {function} action: a test for the collection
+ * @returns {boolean} boolean: true if any of the properties in the collection pass the function, false if the all fail
+ */
+_.some = function(collection, funk){
+    //if a function was provided
+    if(funk !== undefined){
+        //for loop to go through collection if it is an array
+        for(let x = 0; x < collection.length; x++){
+            //if one element called returns true, return true
+            if(funk(collection[x], x, collection)){
+                return true;
+            }
+        }
+        //for loop to go through collection if it is an object
+        for(let key in collection){
+            //if an element called returns true, return true
+            if(funk(collection[key], key, collection)){
+                return true;
+            }
+        }
+        //if all the four loops fail and none of the elements pass the function, return false
+        return false;
+    //if function is not provided, return true if every element is truthy
+    } else { 
+        //for loop to go through collection
+        for(let x = 0; x < collection.length; x++){
+            if(collection[x]){
+                return true;
+            //if elements are not truthy, return false
+            } 
+        }
+        return false;
+    }
+}
+module.exports.some = some;
+
+/**
+ * reduce: function runs a collection through a function and passes all the passing values into a seed. returns the final
+ * value of the seed. 
+ * 
+ * @param {array} collection: the array we will be running through
+ * @param {function} action: a test to run the collection through
+ * @param {seed} starting value: starting value to add the passing values into
+ * @returns {collection} collection: the final form of the starting seed after the collection has passes through the function
+ */
+_.reduce = function(array, funk, seed){
+    let result;
+    //determine if seed was not passed in
+    if(seed === undefined){
+        //result will be set to the first value in the array
+        result = array[0];
+        for(let i = 1; i < array.length; i++){
+            //reassign result to func invocation, this will keep changing as the loop progresses
+            result  = funk(result, array[i], i, array);
+            //.             ?       item.   index collection
+        }
+    //if we were given a seed argument
+    } else {
+        //result will start off by equaling seed
+        result = seed;
+        for(let i = 0; i < array.length; i++){
+            //reassign result to func invocation, this will keep changing as the loop progresses
+            result = funk(result, array[i], i, array);
+        }
+    }
+    //return the final value of result
+    return result;
+}
+module.exports.reduce = reduce;
+
+/**
+ * extend: the function takes an object and modifies it with other objects by either adding new key/values or replacing
+ * the ones that it already has and then returning the modified object.
+ * 
+ * @param {object} collection: starting object to modify 
+ * @param  {...object} collections: the additional object we will be adding to or replacing the original object with
+ * @returns {object} collection: the modified object
+ */
+_.extend = function(object1, ...objects){
+    //object will get reassigned using the Object.assign property. replacing the target first argument with elements in the other arguments.
+    Object.assign(object1, ...objects);
+    //return the modified object
+    return object1;
+}
