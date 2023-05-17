@@ -437,3 +437,4 @@ _.extend = function(object1, ...objects){
     //return the modified object
     return object1;
 }
+module.exports.extend = extend;
