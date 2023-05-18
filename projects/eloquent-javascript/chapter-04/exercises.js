@@ -49,12 +49,14 @@ function reverseArray(array){
 ////////////////////////////////////////////////////////////////////////////////
 
 function reverseArrayInPlace(array) {
-  for (let i = 0; i < Math.floor(array.length / 2); i++) {
-    let old = array[i];
-    array[i] = array[array.length - 1 - i];
-    array[array.length - 1 - i] = old;
-  }
-  return array;
+  let reversed = [];
+    for(let i = array.length - 1; i >= 0; i--){
+      reversed.push(array[i])
+    }
+    for(let x = 0; x < array.length; x++){
+      array[x] = reversed[x];
+    }
+    return array;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
