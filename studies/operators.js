@@ -46,23 +46,36 @@
 //1.Assignment Operators//
 let x = 10;
 console.log(x);//10
-console.log(x *= 5)//50
+console.log(x += 1);//11
+console.log(x -= 5);//5
+console.log(x *= 5);//50
+console.log(x /= 2);//5
 
 //2.Arithmetic operators//
 let y = 13;
 console.log(y - 3);//10
+console.log(y + 3);//16
+console.log(y * 2);//26
+console.log(y / 13);//1
 console.log(y % 7);//3
 
 //3.Comparison Operators//
-console.log(28 === '28')//false
-console.log(10 > 14)//false
-console.log(10 != 9)//true
+console.log(28 === '28');//false
+console.log(28 !== '28');//true
+console.log(5 == '5');//true
+console.log(10 != 9);//true
+console.log(10 > 14);//false
+console.log(10 < 14);//false
+console.log(10 >= 10);//true
+console.log(11 <= 10);//false
+
 
 //4.Logical Operators
 console.log(true && true)//true
 console.log(true && false)//false
 console.log(true || false)//true
 console.log(false || false)//false
+console.log(!false);//true
 
 //5.Unary Operators//
 let a = 0;

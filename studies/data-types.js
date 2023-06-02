@@ -42,6 +42,7 @@ var myName = 'Nasthia'
 //3. Boolean//
 var isStudent = true;
 //isStudent is a Boolean data type
+console.log(5 < 10);//true
 
 //4. Array//
 var shoppingList = ['eggs', 'milk', 'bread'];

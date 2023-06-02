@@ -56,9 +56,9 @@ module.exports.typeOf = typeOf;
 /**
  * first: takes an array and a number and returns a list of the first number of values in the array
  * 
- * @param {array} collection: 
- * @param {number} number: 
- * @returns {array} collection: 
+ * @param {array} collection: function takes in an array
+ * @param {number} number: function takes in a number that represents the first number of balues in the array
+ * @returns {array} collection: return the first number of values as an array
  */
 _.first = function(array, number){
     //create array to push values into
@@ -93,7 +93,7 @@ module.exports.first = first;
  * 
  * @param {array} collection: an array of values
  * @param {number} number: any positive number 
- * @returns {array} collection: returns a modified array of the original array
+ * @returns {array} collection: returns an array and a number and returns a list of the last number of values in the array.
  */
 _.last = function(array, number){
     //init answer variable as an array for us to push the answer into
@@ -129,7 +129,7 @@ module.exports.last = last;
  * 
  * @param { Array } collection: function takes in an array with any value 
  * @param { Value } value: function takes in any value to check for
- * @returns { number } number: returns the index number in the array that the value is located in
+ * @returns { number } number: returns the index number in the array that the value is located in. if the value is not found it returns -1.
  */
 _.indexOf = function(array, value){
     //for loop to go through array
@@ -169,7 +169,7 @@ moudule.exports.contains = contains;
  * unique: function takes an array and loops it through its index to return a new array with no duplicate values.
  * 
  * @param {array} collection: takes in an array as the parameter 
- * @returns {array} collection: returns new array of the original array modified.
+ * @returns {array} collection: returns new array of the original array with only the unique values from the original array.
  */
 _.unique = function(array){
     //init new array variable to push into
